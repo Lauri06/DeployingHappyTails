@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %}
+
+{% block content %} 
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+<style>
+  body {
+        margin: 0;
+        background: #E8DAEF ;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 800;
+  }
+  .lineaHorizontal {
+        height: 5px;
+        background-color: #4A235A;
+        color: #4A235A;
+  }
+  .Texto {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  margin-bottom: 40px;
+  }
+  .Fondo {
+      background-color: #F5EEF8;
+      padding: 100px;
+      position: relative;
+  }
+  .logo {
+      position: absolute;
+      top: 62%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin-bottom: 0;
+      max-width: 150px;
+      border-radius: 100%;
+  }
+
+  .logo img {
+      display: block;
+      width: 100%;
+  }
+</style>
+  
+  <div class="Fondo">
+    <div class="Texto">
+        <h3>INICIAR SESIÓN</h3>
+    </div>
+    <img class="logo" src="{% static 'core/img/Logo H.png' %}" alt="Logo">
+</div>
+<hr class="lineaHorizontal">
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div class="card mx-auto" style="width: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">Ingrese sus credenciales</h5>
+          {{ form | crispy }}
+          <a href="{% url 'home' %}" class="card-link">Inicio</a>
+          <a href="{% url 'register' %}" class="card-link">Registrarse</a>
+          <button class="btn btn-sm btn-primary float-end" type="submit">Iniciar sesión</button>
+        </div>
+      </div>
+
+    
+    
+
+</form>
+<hr class="lineaHorizontal">
+
+{% endblock %}
+
+</div>

@@ -1,0 +1,150 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        margin: 0;
+        background: #E8DAEF ;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 800;
+    }
+    .lineaHorizontal {
+        height: 5px;
+        background-color: #4A235A;
+        color: #4A235A;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: rgb(187, 143, 206);
+        color: white;
+        box-sizing: border-box;
+    }
+
+    .btn:hover {
+        background-color: rgb(142, 68, 173 );
+    }
+
+    .Texto {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-bottom: 40px;
+    }
+
+    .Fondo {
+        background-color: #F5EEF8;
+        padding: 100px;
+        position: relative;
+    }
+    .logo {
+        position: absolute;
+        top: 62%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 0;
+        max-width: 150px;
+        border-radius: 100%;
+    }
+
+    .logo img {
+        display: block;
+        width: 100%;
+    }
+</style>
+
+<div class="Fondo">
+    <div class="Texto">
+        <h3>AGREGAR ALIADO</h3>
+    </div>
+    <img class="logo" src="{% static 'core/img/Logo H.png' %}" alt="Logo">
+</div>
+<hr class="lineaHorizontal">
+
+<div class="container">
+    <h2>Gestión de aliados</h2>
+    <div class="card">
+        <div class="card-body">
+            <form id="formularioAliado" action="/registrarAliado/" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="txtNombre">Nombre de la empresa:</label>
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre de la empresa" minlength="3" maxlength="20" autofocus required>
+                </div>
+                <div class="form-group">
+                    <label for="txtCorreo">Correo de la empresa:</label>
+                    <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" placeholder="Correo de la empresa" minlength="5" maxlength="30" required>
+                </div>
+                <div class="form-group">
+                    <label for="ofrece">Ofrezco:</label>
+                    <select id="ofrece" name="ofrece" class="form-control">
+                        <option value="Producto">Producto</option>
+                        <option value="Servicio">Servicio</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" name="categoria" class="form-control">
+                        <option value="Alimentación adecuada">Alimentación adecuada</option>
+                        <option value="Ejercicio">Ejercicio</option>
+                        <option value="Atención veterinaria">Atención veterinaria</option>
+                        <option value="Higiene y cuidado">Higiene y cuidado</option>
+                        <option value="Entrenamiento y socialización">Entrenamiento y socialización</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Contraseña">Contraseña:</label>
+                    <input type="password" id="Contraseña" name="Contraseña" class="form-control" placeholder="Contraseña" minlength="5" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label for="Telefono">Teléfono de la empresa:</label>
+                    <input type="tel" id="Telefono" name="Telefono" class="form-control" placeholder="Teléfono de la empresa" minlength="5" maxlength="30">
+                </div>
+                <div class="form-group">
+                    {{ aliado.imagenAliado.errors }}
+                    <input type="file" id="imagenAliado" name="imagenAliado" class="form-control-file">
+                    <label for="imagenAliado" class="mb-1">Imagen asociada a la empresa</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success btn-block" value="Guardar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr class="lineaHorizontal">
+{% endblock %}

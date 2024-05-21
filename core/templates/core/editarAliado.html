@@ -1,0 +1,162 @@
+{% extends 'core/base.html' %}
+{% block content %} 
+{% load static %}
+
+<style>
+    body {
+        margin: 0;
+        background: #E8DAEF ;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 800;
+    }
+    .lineaHorizontal {
+        height: 5px;
+        background-color: #4A235A;
+        color: #4A235A;
+    }
+    .Texto {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-bottom: 40px;
+    }
+
+    .Fondo {
+        background-color: #F5EEF8;
+        padding: 100px;
+        position: relative;
+    }
+    .logo {
+        position: absolute;
+        top: 62%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 0;
+        max-width: 150px;
+        border-radius: 100%;
+    }
+
+    .logo img {
+        display: block;
+        width: 100%;
+    }
+
+    .container {
+        max-width: 800px; 
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 600px; 
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: rgb(187, 143, 206);
+        color: white;
+        box-sizing: border-box;
+    }
+
+    .btn:hover {
+        background-color: rgb(142, 68, 173 );
+    }
+</style>
+<hr class="lineaHorizontal">
+<div class="Fondo">
+    <div class="Texto">
+        <h3>Editar Aliado</h3>
+    </div>
+    <img class="logo" src="{% static 'core/img/Logo H.png' %}" alt="Logo">
+</div>
+<hr class="lineaHorizontal">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3"> 
+            <h2>Edición de aliados</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form id="formularioAliado" action="/edicionAliado/" enctype="multipart/form-data" method="POST"> 
+                        {% csrf_token %}
+                        <input type="hidden" name="idAliado" value="{{aliado.idAliado}}">
+                        <div class="form-group">
+                            <label for="txtNombre">Nombre de la empresa:</label>
+                            <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{aliado.nombre_empresa}}" minlength="3" maxlength="20" autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtCorreo">Correo de la empresa:</label>
+                            <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" value="{{aliado.correo}}" minlength="5" maxlength="30">
+                        </div>
+                        <div class="form-group">
+                            <label for="ofrece">Ofrezco:</label>
+                            <select id="ofrece" name="ofrece" class="form-control" value="{{aliado.ofrece}}">
+                                <option value="Producto">Producto</option>
+                                <option value="Servicio">Servicio</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoría:</label>
+                            <select id="categoria" name="categoria" class="form-control" value="{{aliado.categoria}}">
+                                <option value="Alimentación adecuada">Alimentación adecuada</option>
+                                <option value="Ejercicio">Ejercicio</option>
+                                <option value="Atención veterinaria">Atención veterinaria</option>
+                                <option value="Higiene y cuidado">Higiene y cuidado</option>
+                                <option value="Entrenamiento y socialización">Entrenamiento y socialización</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Contraseña">Contraseña:</label>
+                            <input type="password" id="Contraseña" name="Contraseña" class="form-control" value="{{aliado.contraseña}}" minlength="5" maxlength="30">
+                        </div>
+                        <div class="form-group">
+                            <label for="Telefono">Teléfono de la empresa:</label>
+                            <input type="tel" id="Telefono" name="Telefono" class="form-control" value="{{aliado.telefono}}" minlength="5" maxlength="30">
+                        </div>
+                        <div class="form-group">
+                            {{aliado.imagenAliado.errors}}
+                            <input type="file" id="imagenAliado" name="imagenAliado" class="form-control-file">
+                            <label for="imagenAliado" class="mb-1">Imagen asociada a la empresa</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success btn-block" value="Guardar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

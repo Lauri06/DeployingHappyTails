@@ -1,0 +1,132 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Consejo</title>
+    <style>
+        body {
+            margin: 0;
+            background: #E8DAEF ;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 800;
+        }
+        .lineaHorizontal {
+            height: 5px;
+            background-color: #4A235A;
+            color: #4A235A;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgb(187, 143, 206);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            background-color: rgb(142, 68, 173 );
+        }
+
+        .Texto {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        margin-bottom: 40px;
+        }
+
+        .Fondo {
+            background-color: #F5EEF8;
+            padding: 100px;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            top: 62%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-bottom: 0;
+            max-width: 150px;
+            border-radius: 100%;
+        }
+
+        .logo img {
+            display: block;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="Fondo">
+        <div class="Texto">
+            <h3>AGREGAR CONSEJO</h3>
+        </div>
+        <img class="logo" src="{% static 'core/img/Logo H.png' %}" alt="Logo">
+    </div>
+    <hr class="lineaHorizontal">
+
+    <div class="container">
+        <h2>Gestión de consejos</h2>
+        <form id="formularioConsejos" action="/registrarConsejo/" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="txtTitulo">Título del consejo</label>
+                <input type="text" id="txtTitulo" name="txtTitulo" class="form-control" placeholder="Título del consejo" minlength="3" maxlength="50" autofocus required>
+            </div>
+            <div class="form-group">
+                <label for="txtDescripcion">Descripción del consejo</label>
+                <input type="text" id="txtDescripcion" name="txtDescripcion" class="form-control" placeholder="Descripción del consejo" minlength="5" maxlength="500">
+            </div>
+            <div class="form-group">
+                {{ consejo.imagenConsejo.errors }}
+                <label for="imagenConsejo">Imagen asociada al consejo</label>
+                <input type="file" id="imagenConsejo" name="imagenConsejo" class="form-control-file">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Guardar">
+            </div>
+        </form>
+    </div>
+    <hr class="lineaHorizontal">
+</body>
+</html>
+{% endblock %}

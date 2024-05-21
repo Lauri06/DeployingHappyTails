@@ -1,0 +1,126 @@
+{% extends 'core/base.html' %}
+
+{% block content %} 
+{% load static %}
+
+<style>
+    body {
+        margin: 0;
+        background: #E8DAEF ;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 800;
+    }
+    .lineaHorizontal {
+        height: 5px;
+        background-color: #4A235A;
+        color: #4A235A;
+    }
+    .Texto {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-bottom: 40px;
+    }
+
+    .Fondo {
+        background-color: #F5EEF8;
+        padding: 100px;
+        position: relative;
+    }
+    .logo {
+        position: absolute;
+        top: 62%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 0;
+        max-width: 150px;
+        border-radius: 100%;
+    }
+
+    .logo img {
+        display: block;
+        width: 100%;
+    }
+    .container {
+        max-width: 800px; /* Cambia el valor de max-width para hacer el formulario más ancho */
+        margin: 50px auto;
+    }
+
+    .card {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: rgb(187, 143, 206);
+        color: white;
+        box-sizing: border-box;
+    }
+
+    .btn:hover {
+        background-color: rgb(142, 68, 173 );
+    }
+</style>
+
+<hr class="lineaHorizontal">
+<div class="Fondo">
+    <div class="Texto">
+        <h3>Editar Consejo</h3>
+    </div>
+    <img class="logo" src="{% static 'core/img/Logo H.png' %}" alt="Logo">
+</div>
+
+<hr class="lineaHorizontal">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Edición de consejos</h2>
+                    <form id="formularioAliado" action="/edicionConsejo/" enctype="multipart/form-data" method="POST"> 
+                        {% csrf_token %}
+                        <input type="hidden" name="idConsejo" value="{{consejos.idConsejo}}">
+                        <div class="form-group">
+                            <label for="txtTitulo">Título:</label>
+                            <input type="text" id="txtTitulo" name="txtTitulo" class="form-control" value="{{consejos.titulo}}" minlength="3" maxlength="50" autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtDescripcion">Descripción:</label>
+                            <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" rows="4" minlength="5" maxlength="500">{{consejos.descripcion}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            {{consejo.imagenConsejo.errors}}
+                            <label for="imagenConsejo">Imagen relacionada al consejo:</label>
+                            <input type="file" id="imagenConsejo" name="imagenConsejo" class="form-control-file" value="{{consejos.imagenConsejo}}">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

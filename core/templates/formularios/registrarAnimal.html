@@ -1,0 +1,147 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        margin: 0;
+        background: #E8DAEF ;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 800;
+    }
+    .lineaHorizontal {
+        height: 5px;
+        background-color: #4A235A;
+        color: #4A235A;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: rgb(187, 143, 206);
+        color: white;
+        box-sizing: border-box;
+    }
+
+    .btn:hover {
+        background-color: rgb(142, 68, 173 );
+    }
+
+    .Texto {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-bottom: 40px;
+    }
+
+    .Fondo {
+        background-color: #F5EEF8;
+        padding: 100px;
+        position: relative;
+    }
+    .logo {
+        position: absolute;
+        top: 62%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 0;
+        max-width: 150px;
+        border-radius: 100%;
+    }
+
+    .logo img {
+        display: block;
+        width: 100%;
+    }
+</style>
+
+<div class="Fondo">
+    <div class="Texto">
+        <h3>AGREGAR ANIMAL</h3>
+    </div>
+    <img class="logo" src="{% static 'core/img/Logo H.png' %}" alt="Logo">
+</div>
+<hr class="lineaHorizontal">
+
+<div class="container">
+    <h2>Gestión de mascotas</h2>
+    <div class="card">
+        <div class="card-body">
+            <form id="formularioAnimales" action="/registrarAnimal/" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" minlength="3" maxlength="30" autofocus required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtRaza" name="txtRaza" class="form-control" placeholder="Raza" minlength="3" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label for="estadoActual">Estado actual</label>
+                    <select class="form-control" id="estadoActual" name="estadoActual">
+                        <option value="Adoptado">Adoptado</option>
+                        <option value="No Adoptado">No Adoptado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtEstadoSalud" name="txtEstadoSalud" class="form-control" placeholder="Estado de salud" minlength="3" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtUbicacion" name="txtUbicacion" class="form-control" placeholder="Ubicación" minlength="3" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label for="FechaRescate">Fecha de rescate</label>
+                    <input type="date" name="FechaRescate" class="form-control" placeholder="Fecha de rescate">
+                </div>
+                <div class="form-group">
+                    <label for="FechaAdopcion">Fecha de adopción</label>
+                    <input type="date" name="FechaAdopcion" class="form-control" placeholder="Fecha de adopción">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="txtNumeroContacto" name="txtNumeroContacto" class="form-control" placeholder="Número de contacto">
+                </div>
+                <div class="form-group">
+                    {{ animal.imagenAnimal.errors }}
+                    <label for="imagenAnimal">Imagen de la mascota</label>
+                    <input type="file" id="imagenAnimal" name="imagenAnimal" class="form-control-file">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Guardar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr class="lineaHorizontal">
+{% endblock %}

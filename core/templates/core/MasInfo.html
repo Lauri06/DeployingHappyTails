@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACERCA DE NOSOTROS</title>
+  <style>
+    
+    body {
+      font-family: century , 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+      background-color: #E0E0E2; 
+    }
+
+    header {
+      background-color: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+      color:#c55275
+    }
+
+    h1 {
+      font-size: 24px;  
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .descripcion-empresa {
+    text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .descripcion-empresa h2 {
+     text-align: center;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .descripcion-empresa p {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .main {
+      padding: 5px;
+      background-color: #E0E0E2;
+    }
+
+    .equipo {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+
+    .miembro {
+      width: 30%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .miembro img {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .miembro h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .miembro p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    footer {
+      background-color: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SOBRE NOSOTROS </h1>
+    </header>
+
+    <section class="descripcion-empresa">
+      <h2>Descripción de la empresa</h2>
+      <p> HappyTails busca facilitar la adopción y rescate de animales sin hogar en la ciudad de Facatativá, al conectar eficientemente a personas interesadas en adoptar y rescatar por medio del aplicativo web. Brindando un espacio en donde puedan interactuar, publicar y comunicar a través de la sección de foro incluida en nuestra plataforma. </p>
+      
+    </section>
+
+    <section class="main">  <div class="equipo">
+        <div class="miembro">
+          <img src="foto1.jpg" alt="Nombre del miembro 1">
+          <h2>Laura Gutierrez </h2>
+          <p> Estudiante </p>
+    
+        </div>
+        <div class="miembro">
+          <img src="foto2.jpg" alt="Nombre del miembro 2">
+          <h2> Ana Arenales</h2>
+          <p>Estudiante</p>
+         
+        </div>
+        <div class="miembro">
+          <img src="foto3.jpg" alt="Nombre del miembro 3">
+          <h2>Mery Torres</h2>
+          <p>Estudiante</p>
+          
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 HappyTails</p>
+      <a href="{% url 'home' %}">Regresa al Inicio </a>
+    </footer>
+  </div>
+</body>
+</html>
